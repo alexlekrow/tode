@@ -46,4 +46,4 @@ docker run -p 8000:8000 tode-alpine
 docker run -p 8000:8000 tode-debian
 ```
 
-This will run our Tode web application, and make its API accessible locally at <http://localhost:8000/>.
+This will run our Tode web application, and make its health-check API accessible locally at <http://localhost:8000/health>.
