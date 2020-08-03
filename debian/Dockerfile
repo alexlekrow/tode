@@ -1,12 +1,23 @@
+# Base image and labels
 FROM rust:1.43 as builder
 LABEL Name=tode Version=0.0.1
 
+# Create a new empty Rust project
 RUN USER=root cargo new --bin tode
 WORKDIR /tode
-COPY ./Cargo.toml ./Cargo.toml
+
+# Copy over our cargo manifests
+COPY ./Cargo.lock ./Cargo.lock 
+COPY ./Cargo.toml ./Cargo.toml 
+
+# Build and cache dependencies seperately
 RUN cargo build --release
 RUN rm src/*.rs
-ADD . ./
+
+# Copy our project source
+ADD ./src ./src
+
+# Build for release
 RUN rm ./target/release/deps/tode*
 RUN cargo build --release
 
@@ -15,7 +26,7 @@ FROM debian:buster-slim
 ARG APP=/usr/src/app
 EXPOSE 8000
 ENV TZ=Etc/UTC \
-    APP_USER=appuser
+    APP_USER=todeuser
 
 RUN groupadd $APP_USER \
     && useradd -g $APP_USER $APP_USER \
