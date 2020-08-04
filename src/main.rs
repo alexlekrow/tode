@@ -40,7 +40,8 @@ impl Tode for TonicNode {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Running this inside a container requires we serve on 0.0.0.0 not localhost
-    let server_port = env::var("TODE_PORT").unwrap();
+    let default_port = "50051".to_string();
+    let server_port = env::var("TODE_PORT").unwrap_or(default_port);
     let address = "[::0]:".to_string() + &server_port;
     let tonic_node = TonicNode::default();
     

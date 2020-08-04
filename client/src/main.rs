@@ -9,7 +9,8 @@ pub mod tode {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let server_port = env::var("TODE_PORT").unwrap();
+    let default_port = "50051".to_string();
+    let server_port = env::var("TODE_PORT").unwrap_or(default_port);
     let address = "http://[::1]:".to_string() + &server_port;
 
     println!("Client connection to Tonic gRPC server on {:?}", address);

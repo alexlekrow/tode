@@ -25,33 +25,4 @@ docker build -t tode -f ./debian/Dockerfile .
 docker run -p 50051:50051/tcp tode
 ```
 
-### Architecture
-
-#### Tonic gRPC Server
-
-#### Kubernetes Operator Integration
-
-### Useful Development Tools
-
-#### Dive
-
-A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image.
-
-```sh
-wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
-sudo apt install ./dive_0.9.2_linux_amd64.deb
-```
-
-#### Clang-Format
-
-A tool for formatting multiple languages using consistent format styling.
-
-```sh
-sudo apt install clang-format
-```
-
-#### NetTools
-
-```sh
-sudo apt install net-tools
-```
+### Testing the gRPC Server
