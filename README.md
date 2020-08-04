@@ -15,21 +15,25 @@ To build a new tagged container for my [dockerhub](https://hub.docker.com/) repo
 
 ```sh
 docker build -t lekrow/tode:latest -t lekrow/tode:v0.0.1 -f ./debian/Dockerfile .
-docker run -p 8000:8000 lekrow/tode:latest
+docker run -p 50051:50051 lekrow/tode:latest
 ```
 
 If you just want to build the image locally, use the following:
 
 ```sh
 docker build -t tode -f ./debian/Dockerfile .
-docker run -p 8000:8000 tode
+docker run -p 50051:50051/tcp tode
 ```
 
-This will run our Tode web application, and make its health-check API accessible locally at <http://localhost:8000/health>.
+### Architecture
 
-#### Useful Development Tools
+#### Tonic gRPC Server
 
-##### Dive
+#### Kubernetes Operator Integration
+
+### Useful Development Tools
+
+#### Dive
 
 A tool for exploring a docker image, layer contents, and discovering ways to shrink the size of your Docker/OCI image.
 
@@ -38,7 +42,7 @@ wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux
 sudo apt install ./dive_0.9.2_linux_amd64.deb
 ```
 
-##### Clang-Format
+#### Clang-Format
 
 A tool for formatting multiple languages using consistent format styling.
 
@@ -51,9 +55,3 @@ sudo apt install clang-format
 ```sh
 sudo apt install net-tools
 ```
-
-### Architecture
-
-#### Tonic gRPC Server
-
-#### Kubernetes Operator Integration

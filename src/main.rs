@@ -30,7 +30,6 @@ impl Tode for TonicNode {
                     info: "Entered Unsafe condition".to_string(),
                 }
             ]
-            // message: format!("Hello {}!", request.into_inner().name).into(),
         };
 
         Ok(Response::new(reply))
@@ -42,14 +41,14 @@ impl Tode for TonicNode {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Running this inside a container requires we serve on 0.0.0.0 not localhost
     let server_port = env::var("TODE_PORT").unwrap();
-    let address = "[::1]:".to_string() + &server_port;
+    let address = "[::0]:".to_string() + &server_port;
     let tonic_node = TonicNode::default();
     
     println!("Serving Tonic gRPC server on {}", address);
     Server::builder()
-    .add_service(TodeServer::new(tonic_node))
-    .serve(address.parse()?)
-    .await?;
+        .add_service(TodeServer::new(tonic_node))
+        .serve(address.parse()?)
+        .await?;
     println!("Exiting Tonic gRPC server on {}", address);
     
     Ok(())

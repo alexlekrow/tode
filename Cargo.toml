@@ -9,9 +9,9 @@ edition = "2018"
 name = "tode"
 path = "src/main.rs"
 
-[[bin]] # Bin to run the HelloWorld gRPC client
-name = "tode-client"
-path = "src/client.rs"
+# [[bin]] # Bin to run the HelloWorld gRPC client
+# name = "tode-client"
+# path = "src/client.rs"
 
 [dependencies]
 tonic = "0.3"
