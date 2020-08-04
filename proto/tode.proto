@@ -51,6 +51,8 @@ service Tode {
 
 message Condition {
   string info = 1;
+  // Condition Enum to represent current node state of state machine
+  // Time stamps to go with each condition transition
 }
 
 message GetHealthRequest {}

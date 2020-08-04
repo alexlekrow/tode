@@ -1,43 +1,50 @@
-use warp::{Filter, Rejection, Reply};
-  
-// use std::collections::HashMap;
-// use std::hash::{Hash, Hasher};
-// use std::pin::Pin;
-// use std::sync::Arc;
-// use std::time::Instant;
+use tonic::{transport::Server, Request, Response, Status};
 
-// use futures::{Stream, StreamExt};
+use tode::tode_server::{Tode, TodeServer};
+use tode::{GetHealthRequest, GetHealthResponse};
 
-// use tokio::sync::mpsc;
-
-// use tonic::transport::Server;
-// use tonic::{Request, Response, Status};
-
-// use tode::tode_server::{Tode, TodeServer};
-// use tode::{Condition, GetHealthRequest, GetHealthResponse};
-
-// pub mod tode {
-//     tonic::include_proto!("tode");
-// }
-
-// #[derive(Debug)]
-// pub struct TodeService {
-//     is_healthy: bool,
-//     features: Arc<Vec<Condition>>,
-// }
-
-type Result<T> = std::result::Result<T, Rejection>;
-
-#[tokio::main]
-async fn main() {
-    let health_route = warp::path!("health").and_then(health_handler);
-
-    let routes = health_route.with(warp::cors().allow_any_origin());
-
-    println!("Started server at localhost:8000");
-    warp::serve(routes).run(([0, 0, 0, 0], 8000)).await;
+pub mod tode {
+    tonic::include_proto!("tode");
 }
 
-async fn health_handler() -> Result<impl Reply> {
-    Ok("OK")
+#[derive(Debug, Default)]
+pub struct TonicNode {}
+
+#[tonic::async_trait]
+impl Tode for TonicNode {
+    async fn get_health(
+        &self,
+        request: Request<GetHealthRequest>,
+    ) -> Result<Response<GetHealthResponse>, Status> {
+        println!("Got a request: {:?}", request);
+
+        let reply = tode::GetHealthResponse {
+            is_healthy: true,
+            conditions: vec![
+                tode::Condition{
+                    info: "Entered Safe condition".to_string(),
+                },
+                tode::Condition{
+                    info: "Entered Unsafe condition".to_string(),
+                }
+            ]
+            // message: format!("Hello {}!", request.into_inner().name).into(),
+        };
+
+        Ok(Response::new(reply))
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Running this inside a container requires we serve on 0.0.0.0 not localhost
+    let container_address = "[::0]:50051".parse()?;
+    let tonic_node = TonicNode::default();
+
+    Server::builder()
+        .add_service(TodeServer::new(tonic_node))
+        .serve(container_address)
+        .await?;
+
+    Ok(())
 }
