@@ -36,7 +36,6 @@ impl Tode for TonicNode {
     }
 }
 
-// TODO: Make PORT an ENV variable
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Running this inside a container requires we serve on 0.0.0.0 not localhost
