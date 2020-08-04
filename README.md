@@ -3,7 +3,7 @@
 _Tode is a play on the words Tonic and node_.
 
 ---
-Tode is a minimal docker container that's purpose is to run a Tonic gRPC server in a docker container.
+Tode is a minimal docker container that's purpose is to run a Tonic gRPC server node in a docker container.
 
 ## Documentation
 
