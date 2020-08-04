@@ -7,12 +7,6 @@ Tode is a minimal docker container that's purpose is to run a Tonic gRPC server 
 
 ## Documentation
 
-### Tode Architecture
-
-#### Tonic gRPC Server
-
-#### Kubernetes Operator Integration
-
 ### Getting Started
 
 #### Running and Building a Container from Repo Image
@@ -43,3 +37,17 @@ A tool for exploring a docker image, layer contents, and discovering ways to shr
 wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
 sudo apt install ./dive_0.9.2_linux_amd64.deb
 ```
+
+##### Clang-Format
+
+A tool for formatting multiple languages using consistent format styling.
+
+```sh
+sudo apt install clang-format
+```
+
+### Architecture
+
+#### Tonic gRPC Server
+
+#### Kubernetes Operator Integration
