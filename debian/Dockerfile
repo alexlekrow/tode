@@ -27,7 +27,7 @@ RUN cargo build --release
 ################################################
 FROM debian:buster-slim
 ARG APP=/usr/src/app
-EXPOSE 8000
+EXPOSE 50051
 ENV TZ=Etc/UTC \
     APP_USER=todeuser \
     TODE_PORT=50051
