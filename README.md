@@ -1,5 +1,7 @@
 # :frog: Tode
 
+[![newest version docker image version](https://img.shields.io/docker/v/lekrow/tode?sort=semver)](https://hub.docker.com/r/lekrow/tode)
+
 _Tode is a play on the words Tonic and node_.
 
 ---
