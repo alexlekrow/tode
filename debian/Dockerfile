@@ -15,9 +15,7 @@ RUN cargo build --release
 RUN rm src/*.rs
 
 # Copy our project source
-ADD ./build.rs ./build.rs
-ADD ./src ./src
-ADD ./proto ./proto
+COPY . .
 
 # Build for release with Tonic dependencies added to our toolchain
 RUN rm ./target/release/deps/tode*
