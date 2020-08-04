@@ -1,3 +1,5 @@
+use std::env;
+
 use tonic::{transport::Server, Request, Response, Status};
 
 use tode::tode_server::{Tode, TodeServer};
@@ -35,16 +37,20 @@ impl Tode for TonicNode {
     }
 }
 
+// TODO: Make PORT an ENV variable
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Running this inside a container requires we serve on 0.0.0.0 not localhost
-    let container_address = "[::0]:50051".parse()?;
+    let server_port = env::var("TODE_PORT").unwrap();
+    let address = "0.0.0.0:".to_string() + &server_port;
     let tonic_node = TonicNode::default();
-
+    
+    println!("Serving Tonic gRPC server on {}", address);
     Server::builder()
-        .add_service(TodeServer::new(tonic_node))
-        .serve(container_address)
-        .await?;
-
+    .add_service(TodeServer::new(tonic_node))
+    .serve(address.parse()?)
+    .await?;
+    println!("Exiting Tonic gRPC server on {}", address);
+    
     Ok(())
 }
