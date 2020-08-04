@@ -29,7 +29,8 @@ FROM debian:buster-slim
 ARG APP=/usr/src/app
 EXPOSE 8000
 ENV TZ=Etc/UTC \
-    APP_USER=todeuser
+    APP_USER=todeuser \
+    TODE_PORT=50051
 
 RUN groupadd $APP_USER \
     && useradd -g $APP_USER $APP_USER \
