@@ -27,10 +27,11 @@ RUN cargo build --release
 ################################################
 FROM debian:buster-slim
 ARG APP=/usr/src/app
-EXPOSE 50051
 ENV TZ=Etc/UTC \
     APP_USER=todeuser \
     TODE_PORT=50051
+
+EXPOSE $TODE_PORT
 
 RUN groupadd $APP_USER \
     && useradd -g $APP_USER $APP_USER \
