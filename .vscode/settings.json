@@ -3,6 +3,7 @@
         "Kubernetes",
         "codecov",
         "dockerhub",
+        "grpc",
         "lekrow",
         "proto",
         "rustc",

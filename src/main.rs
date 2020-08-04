@@ -39,17 +39,15 @@ impl Tode for TonicNode {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Running this inside a container requires we serve on 0.0.0.0 not localhost
-    let default_port = "50051".to_string();
-    let server_port = env::var("TODE_PORT").unwrap_or(default_port);
-    let address = "[::0]:".to_string() + &server_port;
+    let grpc_addr = "[::0]:".to_string() + &env::var("TODE_PORT").unwrap_or("50051".to_string());
     let tonic_node = TonicNode::default();
     
-    println!("Serving Tonic gRPC server on {}", address);
+    println!("Serving Tonic gRPC server on {}", grpc_addr);
     Server::builder()
         .add_service(TodeServer::new(tonic_node))
-        .serve(address.parse()?)
+        .serve(grpc_addr.parse()?)
         .await?;
-    println!("Exiting Tonic gRPC server on {}", address);
+    println!("Exiting Tonic gRPC server on {}", grpc_addr);
     
     Ok(())
 }
