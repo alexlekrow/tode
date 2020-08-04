@@ -15,26 +15,19 @@ Tode is a minimal docker container that's purpose is to run a Tonic gRPC server 
 
 ### Getting Started
 
-#### Building the Container Image
+#### Running and Building a Container from Repo Image
 
 To build a new tagged container for my [dockerhub](https://hub.docker.com/) repo use one of the following depending on which image base we want:
 
 ```sh
 docker build -t lekrow/tode:latest -t lekrow/tode:v0.0.1 -f ./debian/Dockerfile .
+docker run -p 8000:8000 lekrow/tode:latest
 ```
 
 If you just want to build the image locally, use the following:
 
 ```sh
 docker build -t tode -f ./debian/Dockerfile .
-```
-
-#### Running Container from Image
-
-To run a built image of *tode* use:
-
-```sh
-docker run -p 8000:8000 lekrow/tode:latest
 docker run -p 8000:8000 tode
 ```
 
