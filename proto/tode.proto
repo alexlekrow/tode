@@ -15,7 +15,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "io.tode";
+option java_package = "tode";
 option java_outer_classname = "TodeProto";
 
 package tode;
@@ -49,9 +49,13 @@ service Tode {
   // rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
 }
 
+message Condition {
+  string info = 1;
+}
+
 message GetHealthRequest {}
 
 message GetHealthResponse {
   bool is_healthy = 1;
-  repeated string conditions = 2;
+  repeated Condition conditions = 2;
 }

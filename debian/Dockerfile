@@ -15,10 +15,13 @@ RUN cargo build --release
 RUN rm src/*.rs
 
 # Copy our project source
+ADD ./build.rs ./build.rs
 ADD ./src ./src
+ADD ./proto ./proto
 
-# Build for release
+# Build for release with Tonic dependencies added to our toolchain
 RUN rm ./target/release/deps/tode*
+RUN rustup component add rustfmt --toolchain 1.43.1-x86_64-unknown-linux-gnu
 RUN cargo build --release
 
 ################################################

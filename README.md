@@ -46,6 +46,12 @@ A tool for formatting multiple languages using consistent format styling.
 sudo apt install clang-format
 ```
 
+#### NetTools
+
+```sh
+sudo apt install net-tools
+```
+
 ### Architecture
 
 #### Tonic gRPC Server
