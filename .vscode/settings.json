@@ -1,9 +1,13 @@
 {
     "cSpell.words": [
         "Kubernetes",
+        "codecov",
         "dockerhub",
         "lekrow",
         "proto",
+        "rustc",
+        "rustfmt",
         "tode"
-    ]
+    ],
+    "python.pythonPath": "/bin/python3"
 }
