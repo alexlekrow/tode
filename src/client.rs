@@ -3,21 +3,21 @@ use std::env;
 use tode::tode_client::TodeClient;
 use tode::GetHealthRequest;
 
-pub mod hello_world {
+pub mod tode {
     tonic::include_proto!("tode");
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut client = GreeterClient::connect("http://[::1]:50051").await?;
+    let server_port = env::var("TODE_PORT").unwrap();
+    let address = "http://[::1]:".to_string() + &server_port;
 
-    let request = tonic::Request::new(HelloRequest {
-        name: "Tonic".into(),
-    });
+    println!("Client connection to Tonic gRPC server on {:?}", address);
+    let mut client = TodeClient::connect(address).await?;
 
-    let response = client.say_hello(request).await?;
-
-    println!("RESPONSE={:?}", response);
+    let request = tonic::Request::new(GetHealthRequest {});
+    let response = client.get_health(request).await?;
+    println!("Client got Response: {:?}", response);
 
     Ok(())
 }

@@ -45,4 +45,4 @@ COPY --from=builder /tode/target/release/tode ${APP}/tode
 RUN chown -R $APP_USER:$APP_USER ${APP}
 USER $APP_USER
 WORKDIR ${APP}
-CMD ["./tode"]
+CMD ["/bin/sh"]
