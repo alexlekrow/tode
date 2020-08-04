@@ -9,8 +9,6 @@ Tode is a minimal docker container that's purpose is to run a Tonic gRPC server 
 
 ### Getting Started
 
-#### Running and Building a Container from Repo Image
-
 To build or run the image for my [dockerhub](https://hub.docker.com/r/lekrow/tode) registry, use:
 
 ```sh
