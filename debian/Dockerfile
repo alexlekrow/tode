@@ -1,6 +1,6 @@
 # Base image and labels
 FROM rust:1.43 as builder
-LABEL Name=tode Version=0.0.1
+LABEL Name=tode Version=0.0.2
 
 # Create a new empty Rust project
 RUN USER=root cargo new --bin tode

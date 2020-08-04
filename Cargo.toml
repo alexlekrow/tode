@@ -11,7 +11,7 @@ path = "src/main.rs"
 
 # [[bin]] # Bin to run the HelloWorld gRPC client
 # name = "tode-client"
-# path = "src/client.rs"
+# path = "src/client/client.rs"
 
 [dependencies]
 tonic = "0.3"
