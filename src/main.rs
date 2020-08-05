@@ -15,6 +15,7 @@ pub struct TonicNode {}
 
 #[tonic::async_trait]
 impl Tode for TonicNode {
+
     #[tracing::instrument]
     async fn get_health(
         &self,
