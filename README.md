@@ -13,13 +13,6 @@ Should impliment Readiness and Liveness checks
 
 ### Getting Started
 
-To build or run the image for my [dockerhub](https://hub.docker.com/r/lekrow/tode) registry, use:
-
-```sh
-docker build -t lekrow/tode:latest -t lekrow/tode:v0.0.1 -f ./debian/Dockerfile .
-docker run -p 50051:50051 lekrow/tode:latest
-```
-
 If you just want to build or run the image locally, use:
 
 ```sh
