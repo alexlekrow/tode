@@ -16,6 +16,8 @@ Should impliment Readiness and Liveness checks
 If you just want to build or run the image locally, use:
 
 ```sh
+# For rootless docker be sure to define the current Host socket with:
+# export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 docker build -t tode -f ./debian/Dockerfile .
 docker run -p 50051:50051/tcp tode
 ```
