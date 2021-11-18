@@ -9,8 +9,6 @@ Tode is a minimal docker container that's purpose is to run a Tonic gRPC server 
 
 ## Documentation
 
-Should impliment Readiness and Liveness checks
-
 ### Getting Started
 
 If you just want to build or run the image locally, use:
